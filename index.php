@@ -1,32 +1,29 @@
 <?php
-/**
- * 前途の方針
- * 
- * まずscreen_nameを取得。出来なかったらトップに飛ばす！
- * 
- * kumofsからスレ一覧を取得
- * 
- * スレッドn件を取得
- * 
- * 取得したスレッドn件を出力
- * 
- */
 require 'class/Autoload.php';
 
 //screen_nameを取得
 /**
-try {
-    $screenName = new GetScreenName();
-} catch (Exception $error){
-    echo $error->getMessage() . PHP_EOL;
-    echo 'code: ' . $error->getCode();
-    exit();
-}
-*/
-
+  try {
+  $screenName = new GetScreenName();
+  } catch (Exception $error){
+  echo $error->getMessage() . PHP_EOL;
+  echo 'code: ' . $error->getCode();
+  exit();
+  }
+ */
 //kumofsからスレ一覧を取得
 $thread = new Thread();
 $threadList = $thread->getThreadList();
 ?>
-
-<?php $thread->showThreads($threadList); ?>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+    </head>
+    <body>
+        <form action="makeThread.php" method="POST">
+            タイトル: <input name="title"><br>
+            <textarea name="description"></textarea> <button type="submit">送信</button>
+        </form>
+        <?php $thread->showThreads($threadList); ?>
+    </body>
+</html>

@@ -1,9 +1,7 @@
 <?php
 require '../class/Autoload.php';
-
+header('content-type:text/plain');
 $io = new IO();
 
 $thread = new Thread();
-$str = $thread->getThread(0);
-var_dump($str);
-?>
+var_dump($thread->getThreadList());
