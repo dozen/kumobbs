@@ -11,9 +11,9 @@ require 'class/Autoload.php';
   exit();
   }
  */
-//kumofsからスレ一覧を取得
-$thread = new Thread();
-$threadList = $thread->getThreadList();
+
+$showThreads = new ShowThreads();
+$threadList = $showThreads->getThreadList();
 ?>
 <html>
     <head>

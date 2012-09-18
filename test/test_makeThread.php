@@ -1,4 +1,5 @@
 <?php
+
 require '../class/Autoload.php';
 //screen_nameを取得
 try {

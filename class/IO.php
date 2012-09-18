@@ -14,7 +14,7 @@ class IO {
 
     function __construct() {
         static $kumo;
-        
+
         if (!isset($kumo)) {
             try {
                 $kumo = new Memcached();

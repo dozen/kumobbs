@@ -1,13 +1,17 @@
 <?php
 
-$sampleThreadData = array(
-    array(
-        'name' => '_dozen_',
-        'description' => 'ここに要望や不具合を書き込んでください。',
-        'time' => Functions::timestamp())
+$threadList = array(
+    'tag' => array(
+        'tag' => 'タグ',
+        'title' => 'タイトル',
+        'uptime' => '更新日時'
+    )
 );
 
-$sampleThreadList = array(
-    array('id' => 0, 'title' => '最初の投稿', 'update' => Functions::timestamp()),
+$content = array(
+    'tag' => array(
+        'tag' => 'タグ',
+        'name' => '名前',
+        'time' => '投稿日時'
+    )
 );
-?>

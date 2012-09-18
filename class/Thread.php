@@ -40,7 +40,7 @@ class Thread {
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @param array $data
      */
     function setThread($id, $data) {
@@ -54,11 +54,11 @@ class Thread {
     function showThreads($threads) {
         foreach ($threads as $thread) {
             echo
-            '<div class="thread">' . 
+            '<div class="thread">' .
             '<div class="command">' .
             '<a href="makeResponseForm.php?id=' . $thread['id'] . '">返信</a>' .
             '</div>' .
-            '<div class="thread_title">' . htmlspecialchars($thread['title']) . '</div>' .
+            '<div class="thread_title">No.' . $thread['id'] . ' ' . htmlspecialchars($thread['title']) . '</div>' .
             '<div class="body">';
             $this->showBody($thread['id']);
             echo
@@ -69,7 +69,7 @@ class Thread {
 
     /**
      * スレッドの中身を取得して表示する
-     * @param int $id
+     * @param string $id
      */
     function showBody($id) {
         $body = $this->getThread($id);

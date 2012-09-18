@@ -26,13 +26,17 @@ class MakeNewThread extends Thread {
     function insertToThreadList() {
         $threadList = $this->getThreadList();
         $this->threadCount = count($threadList);
-        $newThread = array('id' => $this->threadCount - 1, 'title' => $this->threadData->title);
+        $this->id = Functions::randomString();
+        $newThread = array('id' => $this->id, 'title' => $this->threadData->title);
         array_unshift($threadList, $newThread);
         $this->setThreadList($threadList);
     }
 
+    /**
+     * insertToThreadList()を先に実行すること
+     */
     function setNewThread() {
-        $this->setThread($this->threadCount - 1, array(
+        $this->setThread($this->id, array(
             array(
                 'name' => $this->threadData->screenName,
                 'description' => $this->threadData->description,
