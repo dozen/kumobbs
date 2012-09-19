@@ -16,10 +16,10 @@ class Functions {
 
     /**
      * ランダムな文字列を作成
-     * @param int $length 文字列の長さ。指定がない場合、20文字
+     * @param int $length 文字列の長さ。指定がない場合、30文字
      * @return string ランダムな文字列を返す
      */
-    static function randomString($length = 10) {
+    static function randomString($length = 30) {
         $result = '';
         for ($i = 0; $i < $length; $i++) {
             $result .= substr('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-', mt_rand(0, 63), 1);

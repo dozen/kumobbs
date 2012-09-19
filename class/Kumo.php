@@ -64,7 +64,7 @@ class Kumo {
      * @param array $data
      * @return boolean
      */
-    function setThread($tag, $data) {
+    function setContent($tag, $data) {
         return $this->kumo->set($this->prefix . 'Thread:' . $tag, $data);
     }
 

@@ -12,6 +12,7 @@ $content = array(
     'tag' => array(
         'tag' => 'タグ',
         'name' => '名前',
+        'text' => '内容',
         'time' => '投稿日時'
     )
 );
