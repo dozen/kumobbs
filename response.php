@@ -4,7 +4,7 @@ require 'class/Autoload.php';
 
 //screen_nameを取得
 try {
-    $screenName = new GetScreenName();
+    $screenName = ScreenName::get();
     $response = new NewResponse();
     $response->setData($screenName);
     $response->insertContent();

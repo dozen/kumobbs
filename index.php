@@ -3,7 +3,7 @@ require 'class/Autoload.php';
 
 //screen_nameを取得
 try {
-    $screenName = new GetScreenName();
+    $screenName = ScreenName::get();
     $showThreads = new ShowThreads();
     $threadList = $showThreads->getThreadList();
 } catch (Exception $error) {
@@ -11,9 +11,6 @@ try {
     echo 'code: ' . $error->getCode();
     exit();
 }
-echo '<pre>';
-var_dump($screenName);
-echo '</pre>';
 ?>
 <html>
     <head>

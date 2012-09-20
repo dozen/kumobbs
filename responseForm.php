@@ -2,7 +2,7 @@
 require 'class/Autoload.php';
 
 try {
-    $screenName = new GetScreenName();
+    $screenName = ScreenName::get();
     $tag = Functions::getGET('tag');
     if (empty($tag)) {
         throw Exception('値が不正です', 300);
