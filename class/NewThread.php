@@ -7,16 +7,16 @@
  */
 class NewThread extends Kumo {
 
-    private $data, $tag;
+    private $data;
 
     function setData($screenName) {
-        $this->data = Functions::getPOST('title');
+        $this->data->title = Functions::getPOST('title');
         $this->data->text = Functions::getPOST('text');
         $this->data->name = $screenName;
         $this->data->time = Functions::timestamp();
         $this->data->tag = Functions::randomString();
-        if (empty($this->data->title) || empty($this->data->text)) {
-            throw new Exception('値が空です', 302);
+        if (empty($this->data->title) || empty($this->data->text) || empty($this->data->name)) {
+            throw new Exception('不正な値です', 301);
         }
     }
 
@@ -27,7 +27,7 @@ class NewThread extends Kumo {
                 'title' => $this->data->title,
                 'uptime' => $this->data->time
             )
-            );
+        );
         $threadList = $this->getThreadList();
         $result = $insertThread + $threadList;
         $this->setThreadList($result);
@@ -43,4 +43,5 @@ class NewThread extends Kumo {
             )
         ));
     }
+
 }

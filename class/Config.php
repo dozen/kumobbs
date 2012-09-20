@@ -7,9 +7,14 @@
  */
 class Config {
     /**
-     * kumofsのホスト
+     * レスがついた時にスレッドを一番上に持ってくるか。
      */
 
+    const LIFT_THREAD = true;
+
+    /**
+     * kumofsのホスト
+     */
     const KUMOFS_HOST = 'localhost';
 
     /**

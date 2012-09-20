@@ -4,12 +4,11 @@ require 'class/Autoload.php';
 
 //screen_nameを取得
 try {
-    //$screenName = new GetScreenName();
-    $screenName = '_dozen_';
-    $thread = new MakeNewResponse();
-    $thread->setData($screenName);
-    $thread->insertResponse();
-    $thread->liftUpThread();
+    $screenName = new GetScreenName();
+    $response = new NewResponse();
+    $response->setData($screenName);
+    $response->insertContent();
+    $response->updateThreadList();
 } catch (Exception $error) {
     echo $error->getMessage() . PHP_EOL;
     echo 'code: ' . $error->getCode();

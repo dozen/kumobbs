@@ -18,8 +18,7 @@ class Kumo {
      */
     function __construct() {
 
-        $this->kumo = new Memcached();
-        $this->kumo->addServer(Config::KUMOFS_HOST, Config::KUMOFS_PORT);
+        $this->kumo = Singleton::Kumo();
 
         /*
          * 接頭辞を定義します。
@@ -37,7 +36,11 @@ class Kumo {
      * @return array スレッドの一覧。失敗したらfalse。
      */
     function getThreadList() {
-        return $this->kumo->get($this->prefix . 'ThreadList');
+        $result = $this->kumo->get(self::$prefix . 'ThreadList');
+        if($result === false) {
+            throw new Exception('スレッド一覧がありません', 101);
+        }
+        return $result;
     }
 
     /**
@@ -46,7 +49,8 @@ class Kumo {
      * @return boolean 成否を返す
      */
     function setThreadList($data) {
-        return $this->kumo->set($this->prefix . 'ThreadList', $data, false);
+        $result = $this->kumo->set(self::$prefix . 'ThreadList', $data, false);
+        return $result;
     }
 
     /**
@@ -54,8 +58,12 @@ class Kumo {
      * @param string $tag
      * @return array スレッドの中身を返す。失敗したらfalse。
      */
-    function getThread($tag) {
-        return $this->kumo->get($this->prefix . 'Thread:' . $tag);
+    function getContent($tag) {
+        $result = $this->kumo->get(self::$prefix . 'Thread:' . $tag);
+        if($result === false) {
+            throw new Exception('スレッドデータがありません', 101);
+        }
+        return $result;
     }
 
     /**
@@ -65,7 +73,7 @@ class Kumo {
      * @return boolean
      */
     function setContent($tag, $data) {
-        return $this->kumo->set($this->prefix . 'Thread:' . $tag, $data);
+        return $this->kumo->set(self::$prefix . 'Thread:' . $tag, $data);
     }
 
 }

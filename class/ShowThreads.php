@@ -4,14 +4,14 @@
  * Description of ShowThreads
  *
  * @author dozen
- * @version 0.1
+ * @version 0.2
  */
 class ShowThreads extends Kumo {
 
     /**
      * スレッドの中身を全部表示
      */
-    function showThreads($threadList) {
+    function show($threadList) {
         foreach ($threadList as $thread) {
             echo '<div class="thread">' .
             '<div clasas="command">' .
@@ -26,13 +26,13 @@ class ShowThreads extends Kumo {
     }
 
     function showThreadContent($tag) {
-        $contents = $this->getThread($tag);
+        $contents = $this->getContent($tag);
         foreach ($contents as $response) {
             echo
             '<dev>' .
-            '<div class="text">' . nl2br(htmlspecialchars($response), false) . '</div>' .
+            '<div class="text">' . nl2br(htmlspecialchars($response['text']), false) . '</div>' .
             '<div class="time">' . $response['time'] . '</div>' .
-            '<div class="name">' . $response['name'] . '</div>' .
+            '<div class="name">' . nl2br(htmlspecialchars($response['name']), false) . '</div>' .
             '<div class="clr hr"><img src="img/hr.png"></div>' .
             '</div>';
         }

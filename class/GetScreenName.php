@@ -23,8 +23,8 @@ class GetScreenName {
         } else {
             throw new Exception('Cookieがありません', 100);
         }
-        $this->io = new IO();
-        $data = unserialize($this->io->kumo->get(md5($id)));
+        $this->kumo = Singleton::Kumo();
+        $data = unserialize($this->kumo->get(md5($id)));
         if (!$data['config']['current_data']) {
             throw new Exception('ユーザデータがありません', 101);
         }
