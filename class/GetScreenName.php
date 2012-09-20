@@ -23,13 +23,14 @@ class GetScreenName {
         } else {
             throw new Exception('Cookieがありません', 100);
         }
-        $this->kumo = Singleton::Kumo();
-        $data = unserialize($this->kumo->get(md5($id)));
-        if (!$data['config']['current_data']) {
+        $kumo = Singleton::Kumo();
+        $data = unserialize($kumo->get(md5($id)));
+        $screenName = $data['config']['current_account'];
+        if (!$screenName) {
             throw new Exception('ユーザデータがありません', 101);
         }
 
-        return $data['config']['current_data'];
+        return $screenName;
     }
 
 }

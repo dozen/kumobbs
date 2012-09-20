@@ -11,6 +11,9 @@ try {
     echo 'code: ' . $error->getCode();
     exit();
 }
+echo '<pre>';
+var_dump($screenName);
+echo '</pre>';
 ?>
 <html>
     <head>
