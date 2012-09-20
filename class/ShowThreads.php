@@ -29,10 +29,10 @@ class ShowThreads extends Kumo {
         $contents = $this->getContent($tag);
         foreach ($contents as $response) {
             echo
-            '<dev>' .
+            '<div>' .
             '<div class="text">' . nl2br(htmlspecialchars($response['text']), false) . '</div>' .
             '<div class="time">' . $response['time'] . '</div>' .
-            '<div class="name">' . nl2br(htmlspecialchars($response['name']), false) . '</div>' .
+            '<div class="name"><a href="/' . $response['name'] . '/" target="_blank">@' . $response['name'] . '</a></div>' .
             '<div class="clr hr"><img src="img/hr.png"></div>' .
             '</div>';
         }

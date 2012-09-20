@@ -6,6 +6,12 @@
  * @author dozen
  */
 class Config {
+    
+    /**
+     * タイトル
+     */
+    const TITLE = '掲示板';
+    
     /**
      * レスがついた時にスレッドを一番上に持ってくるか。
      */

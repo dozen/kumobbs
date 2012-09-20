@@ -5,6 +5,9 @@ header('content-type:text/plain');
 //screen_nameを取得
 try {
     $screenName = ScreenName::get();
+    $auth = new Auth();
+    $auth->setData($screenName);
+    $auth->check();
     $thread = new NewThread();
     $thread->setData($screenName);
     $thread->insertToThreadList();

@@ -5,6 +5,9 @@ require 'class/Autoload.php';
 //screen_nameを取得
 try {
     $screenName = ScreenName::get();
+    $auth = new Auth();
+    $auth->setData($screenName);
+    $auth->check();
     $response = new NewResponse();
     $response->setData($screenName);
     $response->insertContent();
