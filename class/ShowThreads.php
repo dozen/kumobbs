@@ -14,7 +14,7 @@ class ShowThreads extends Kumo {
     function show($threadList) {
         foreach ($threadList as $thread) {
             echo '<div class="thread">' .
-            '<div clasas="command">' .
+            '<div class="command">' .
             '<a href="responseForm.php?tag=' . $thread['tag'] . '">返信</a>' .
             '</div>' .
             '<div class="title">' . htmlspecialchars($thread['title']) . '</div>' .
