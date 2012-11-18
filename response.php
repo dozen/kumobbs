@@ -19,3 +19,4 @@ try {
 }
 
 header('location: /kumobbs');
+?>

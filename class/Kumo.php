@@ -1,7 +1,5 @@
 <?php
 
-require 'Autoload.php';
-
 /**
  * Kumofsからスレッドの一覧やスレッドの中身を取り出すクラス
  * @author dozen
@@ -37,7 +35,7 @@ class Kumo {
      */
     function getThreadList() {
         $result = $this->kumo->get(self::$prefix . 'ThreadList');
-        if($result === false) {
+        if ($result === false) {
             throw new Exception('スレッド一覧がありません', 101);
         }
         return $result;
@@ -60,8 +58,8 @@ class Kumo {
      */
     function getContent($tag) {
         $result = $this->kumo->get(self::$prefix . 'Thread:' . $tag);
-        if($result === false) {
-            throw new Exception('スレッドデータがありません', 101);
+        if ($result === false) {
+            throw new Exception('スレッドデータがありません', 102);
         }
         return $result;
     }
@@ -74,6 +72,45 @@ class Kumo {
      */
     function setContent($tag, $data) {
         return $this->kumo->set(self::$prefix . 'Thread:' . $tag, $data);
+    }
+
+    /**
+     * スレッドを削除
+     */
+    function deleteThread($tag) {
+        $threadList = $this->getThreadList();
+        unset($threadList[$tag]); //該当するスレッドの情報をスレッドの一覧から削除
+        $this->setThreadList($threadList);
+        $this->kumo->delete(self::$prefix . 'Thread:' . $tag); //スレッドの中身を削除
+    }
+
+    /**
+     * レスだけを削除
+     */
+    function deleteResponse($responseTag, $threadTag = null) {
+        if ($threadTag === null) {
+            $threadTag = $this->searchParent($responseTag);
+        }
+        $threadData = $this->getContent($threadTag);
+        unset($threadData[$responseTag]);
+        $this->setContent($threadTag, $threadData);
+        return true;
+    }
+
+    /**
+     * レスがどのスレッドのものか検索する。
+     */
+    function searchParent($responseTag) {
+        $threadList = $this->getThreadList();
+        foreach ($threadList as $key => $value) {
+            $responses = $this->getContent($value['tag']);
+            $isInArray = array_key_exists($responseTag, $responses);
+            if ($isInArray === true) {
+                return $key;
+            }
+        }
+        //return false;
+        throw new Exception('スレッドが見つかりませんでした', 201);
     }
 
 }

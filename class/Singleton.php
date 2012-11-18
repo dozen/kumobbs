@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of Kumo
  *
@@ -12,7 +13,7 @@ class Singleton {
         if (!isset($kumo)) {
             try {
                 $kumo = new Memcached();
-                $kumo->addServer(Config::KUMOFS_HOST, Config::KUMOFS_PORT);
+                $kumo->addServer(Config::DB_KVS_HOST, Config::DB_KVS_PORT);
             } catch (MemcachedException $error) {
                 throw new Exception($error->getMessage(), 200);
             }

@@ -4,8 +4,8 @@ require 'class/Autoload.php';
 try {
     $screenName = ScreenName::get();
     $tag = Functions::getGET('tag');
-    if (empty($tag)) {
-        throw Exception('値が不正です', 300);
+    if ($tag === false) {
+        throw new Exception('値が不正です', 300);
     }
     $auth = new Auth();
     $auth->issueAuthCode($screenName);
