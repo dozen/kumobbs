@@ -34,5 +34,18 @@ class Functions {
     static function getGET($key) {
         return isset($_GET[$key]) ? $_GET[$key] : false;
     }
+    
+    /**
+     * 管理者かどうかチェック
+     * @param type $name
+     * @return boolean
+     */
+    static function isAdmin($name) {
+        if ($name === Config::ADMIN) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

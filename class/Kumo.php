@@ -59,7 +59,7 @@ class Kumo {
     function getContent($tag) {
         $result = $this->kumo->get(self::$prefix . 'Thread:' . $tag);
         if ($result === false) {
-            throw new Exception('スレッドデータがありません', 102);
+            throw new Exception('スレッドがありません', 102);
         }
         return $result;
     }
@@ -86,6 +86,9 @@ class Kumo {
 
     /**
      * レスだけを削除
+     * @param   string  $responseTag    レスのタグ
+     * @param   string  $threadTag      スレッドのタグ(空の場合、レスがどのスレッドのものか検索をかける)
+     * @return  boolean                 成否;
      */
     function deleteResponse($responseTag, $threadTag = null) {
         if ($threadTag === null) {
@@ -99,6 +102,8 @@ class Kumo {
 
     /**
      * レスがどのスレッドのものか検索する。
+     * @param   string $responseTag レスのタグ
+     * @return  string              スレッドのタグ
      */
     function searchParent($responseTag) {
         $threadList = $this->getThreadList();

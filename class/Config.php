@@ -67,5 +67,5 @@ class Config {
     /**
      * 
      */
-    const PER_PAGE = 5000;
+    const PER_PAGE = 30;
 }

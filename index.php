@@ -1,11 +1,14 @@
 <?php
 require 'class/Autoload.php';
 
-//screen_nameを取得
 try {
+    //screen_nameを取得
     $screenName = ScreenName::get();
-    $showThreads = new ShowThreads();
-    $threadList = $showThreads->getThreadList();
+    if (Functions::isAdmin($screenName)) {
+        $ThreadList = new AdminShowThreadList;
+    } else {
+        $ThreadList = new ShowThreadList;
+    }
     $auth = new Auth();
     $auth->issueAuthCode($screenName);
 } catch (Exception $error) {
@@ -18,10 +21,12 @@ try {
     echo 'code: ' . $error->getCode();
     exit();
 }
+
+$page = Functions::getGET('page');
 ?>
 <html>
     <head>
-        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <link rel="stylesheet" href="/kumobbs/css/style.css" type="text/css">
         <title><?php echo Config::TITLE ?></title>
     </head>
     <body>
@@ -32,6 +37,7 @@ try {
             タイトル: <input name="title"><br>
             <textarea name="text"></textarea> <button type="submit">送信</button>
         </form>
-        <?php $showThreads->show($threadList); ?>
+        <?php echo $ThreadList->show($page); ?>
+        <?php echo Pagenation::show() ?>
     </body>
 </html>
